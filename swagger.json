@@ -15,7 +15,7 @@
         "summary": "Buscar superhéroe por id",
         "parameters": [
           {
-            "name": "name",
+            "name": "id",
             "in": "path",
             "required": true,
             "description": "Id del superhéroe",
