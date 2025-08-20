@@ -1,0 +1,137 @@
+[
+    {
+        "id": 1,
+        "nombre": "Laptop",
+        "precio": 1200.00,
+        "categoria": "Electrónica",
+        "disponible": true
+    },
+    {
+        "id": 2,
+        "nombre": "Teléfono Móvil",
+        "precio": 800.00,
+        "categoria": "Electrónica",
+        "disponible": true
+    },
+    {
+        "id": 3,
+        "nombre": "Auriculares Inalámbricos",
+        "precio": 150.00,
+        "categoria": "Accesorios",
+        "disponible": false
+    },
+    {
+        "id": 4,
+        "nombre": "Monitor 4K",
+        "precio": 300.00,
+        "categoria": "Electrónica",
+        "disponible": true
+    },
+    {
+        "id": 5,
+        "nombre": "Teclado Mecánico",
+        "precio": 100.00,
+        "categoria": "Accesorios",
+        "disponible": true
+    },
+    {
+        "id": 6,
+        "nombre": "Ratón Inalámbrico",
+        "precio": 50.00,
+        "categoria": "Accesorios",
+        "disponible": true
+    },
+    {
+        "id": 7,
+        "nombre": "Impresora Láser",
+        "precio": 200.00,
+        "categoria": "Oficina",
+        "disponible": false
+    },
+    {
+        "id": 8,
+        "nombre": "Escáner de Documentos",
+        "precio": 120.00,
+        "categoria": "Oficina",
+        "disponible": true
+    },
+    {
+        "id": 9,
+        "nombre": "Proyector Full HD",
+        "precio": 400.00,
+        "categoria": "Electrónica",
+        "disponible": true
+    },
+    {
+        "id": 10,
+        "nombre": "Cámara Digital",
+        "precio": 600.00,
+        "categoria": "Fotografía",
+        "disponible": true
+    },
+    {
+        "id": 11,
+        "nombre": "Smartwatch",
+        "precio": 250.00,
+        "categoria": "Electrónica",
+        "disponible": true
+    },
+    {
+        "id": 12,
+        "nombre": "Altavoces Bluetooth",
+        "precio": 80.00,
+        "categoria": "Accesorios",
+        "disponible": true
+    },
+    {
+        "id": 13,
+        "nombre": "Cargador Solar Portátil",
+        "precio": 60.00,
+        "categoria": "Accesorios",
+        "disponible": false
+    },
+    {
+        "id": 14,
+        "nombre": "Silla Ergonómica",
+        "precio": 220.00,
+        "categoria": "Muebles",
+        "disponible": true
+    },
+    {
+        "id": 15,
+        "nombre": "Mesa de Oficina",
+        "precio": 180.00,
+        "categoria": "Muebles",
+        "disponible": true
+    },
+    {   "id": 16,
+        "nombre": "Estantería de Libros",
+        "precio": 150.00,
+        "categoria": "Muebles",
+        "disponible": true
+    },
+    {   "id": 17,
+        "nombre": "Cámara de Seguridad",
+        "precio": 350.00,
+        "categoria": "Seguridad",
+        "disponible": true
+    },
+    {   "id": 18,
+        "nombre": "Sistema de Alarma",
+        "precio": 500.00,
+        "categoria": "Seguridad",
+        "disponible": true
+    },
+    {   "id": 19,
+        "nombre": "Router Wi-Fi",
+        "precio": 90.00,
+        "categoria": "Redes",
+        "disponible": true
+    },
+    {   "id": 20,
+        "nombre": "Extensor de Red",
+        "precio": 70.00,
+        "categoria": "Redes",
+        "disponible": true
+    }
+]
