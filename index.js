@@ -1,3 +1,5 @@
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
@@ -56,7 +58,7 @@ app.get('/api/productos/:id', (req, res) => {
     res.status(404).json({ error: 'Producto no encontrado' });
   }
 });
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.listen(PORT, () => {
   console.log(`Proxy activo en http://localhost:${PORT}`);
 });
