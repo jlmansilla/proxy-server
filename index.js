@@ -99,6 +99,22 @@ app.put('/api/productos/:id/stock/reset', express.json(), (req, res) => {
   res.json({ mensaje: 'Stock actualizado', producto });
 });
 
+app.post('/api/enviar-correo', express.json(), (req, res) => {
+  const { nombre, email, asunto, mensaje } = req.body;
+
+  if (!nombre || !email || !asunto || !mensaje) {
+    return res.status(400).json({ error: "Faltan campos obligatorios." });
+  }
+
+  console.log(`📧 Simulando envío de correo:
+    De: ${nombre} <${email}>
+    Asunto: ${asunto}
+    Mensaje: ${mensaje}
+  `);
+
+  res.json({ mensaje: "Correo simulado correctamente." });
+});
+
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.listen(PORT, () => {
   console.log(`Proxy activo en http://localhost:${PORT}`);
