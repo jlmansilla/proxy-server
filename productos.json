@@ -2,136 +2,176 @@
     {
         "id": 1,
         "nombre": "Laptop",
+        "description": "Una computadora portátil de alta gama",
         "precio": 1200.00,
         "categoria": "Electrónica",
-        "disponible": true
+        "stock": 100,
+        "imagen": "https://picsum.photos/200/200?random=1"
     },
     {
         "id": 2,
         "nombre": "Teléfono Móvil",
+        "description": "Un smartphone con excelentes características",
         "precio": 800.00,
         "categoria": "Electrónica",
-        "disponible": true
+        "stock": 100,
+        "imagen": "https://picsum.photos/200/200?random=2"
     },
     {
         "id": 3,
         "nombre": "Auriculares Inalámbricos",
+        "description": "Auriculares con cancelación de ruido",
         "precio": 150.00,
         "categoria": "Accesorios",
-        "disponible": false
+        "stock": 0,
+        "imagen": "https://picsum.photos/200/200?random=3"
     },
     {
         "id": 4,
         "nombre": "Monitor 4K",
+        "description": "Monitor de alta resolución para gamers",
         "precio": 300.00,
         "categoria": "Electrónica",
-        "disponible": true
+        "stock": 100,
+        "imagen": "https://picsum.photos/200/200?random=4"
     },
     {
         "id": 5,
         "nombre": "Teclado Mecánico",
+        "description": "Teclado mecánico con retroiluminación RGB",
         "precio": 100.00,
         "categoria": "Accesorios",
-        "disponible": true
+        "stock": 100,
+        "imagen": "https://picsum.photos/200/200?random=5"
     },
     {
         "id": 6,
         "nombre": "Ratón Inalámbrico",
+        "description": "Ratón ergonómico con conexión Bluetooth",
         "precio": 50.00,
         "categoria": "Accesorios",
-        "disponible": true
+        "stock": 100,
+        "imagen": "https://picsum.photos/200/200?random=6"
     },
     {
         "id": 7,
         "nombre": "Impresora Láser",
+        "description": "Impresora láser multifuncional",
         "precio": 200.00,
         "categoria": "Oficina",
-        "disponible": false
+        "stock": 0,
+        "imagen": "https://picsum.photos/200/200?random=7"
     },
     {
         "id": 8,
         "nombre": "Escáner de Documentos",
+        "description": "Escáner de alta velocidad para documentos",
         "precio": 120.00,
         "categoria": "Oficina",
-        "disponible": true
+        "stock": 100,
+        "imagen": "https://picsum.photos/200/200?random=8"
     },
     {
         "id": 9,
         "nombre": "Proyector Full HD",
+        "description": "Proyector portátil con resolución Full HD",
         "precio": 400.00,
         "categoria": "Electrónica",
-        "disponible": true
+        "stock": 100,
+        "imagen": "https://picsum.photos/200/200?random=9"
     },
     {
         "id": 10,
         "nombre": "Cámara Digital",
+        "description": "Cámara digital con lente intercambiable",
         "precio": 600.00,
         "categoria": "Fotografía",
-        "disponible": true
+        "stock": 100,
+        "imagen": "https://picsum.photos/200/200?random=10"
     },
     {
         "id": 11,
         "nombre": "Smartwatch",
+        "description": "Reloj inteligente con monitor de salud",
         "precio": 250.00,
         "categoria": "Electrónica",
-        "disponible": true
+        "stock": 100,
+        "imagen": "https://picsum.photos/200/200?random=11"
     },
     {
         "id": 12,
         "nombre": "Altavoces Bluetooth",
+        "description": "Altavoces portátiles con conexión Bluetooth",
         "precio": 80.00,
         "categoria": "Accesorios",
-        "disponible": true
+        "stock": 100,
+        "imagen": "https://picsum.photos/200/200?random=12"
     },
     {
         "id": 13,
         "nombre": "Cargador Solar Portátil",
+        "description": "Cargador solar para dispositivos móviles",
         "precio": 60.00,
         "categoria": "Accesorios",
-        "disponible": false
+        "stock": 0,
+        "imagen": "https://picsum.photos/200/200?random=13"
     },
     {
         "id": 14,
         "nombre": "Silla Ergonómica",
+        "description": "Silla de oficina ergonómica y ajustable",
         "precio": 220.00,
         "categoria": "Muebles",
-        "disponible": true
+        "stock": 100,
+        "imagen": "https://picsum.photos/200/200?random=14"
     },
     {
         "id": 15,
         "nombre": "Mesa de Oficina",
+        "description": "Mesa de oficina con espacio de almacenamiento",
         "precio": 180.00,
         "categoria": "Muebles",
-        "disponible": true
+        "stock": 100,
+        "imagen": "https://picsum.photos/200/200?random=15"
     },
     {   "id": 16,
         "nombre": "Estantería de Libros",
+        "description": "Estantería de madera para libros y decoraciones",
         "precio": 150.00,
         "categoria": "Muebles",
-        "disponible": true
+        "stock": 100,
+        "imagen": "https://picsum.photos/200/200?random=16"
     },
     {   "id": 17,
         "nombre": "Cámara de Seguridad",
+        "description": "Cámara de seguridad con visión nocturna",
         "precio": 350.00,
         "categoria": "Seguridad",
-        "disponible": true
+        "stock": 100,
+        "imagen": "https://picsum.photos/200/200?random=17"
     },
     {   "id": 18,
         "nombre": "Sistema de Alarma",
+        "description": "Sistema de alarma para el hogar",
         "precio": 500.00,
         "categoria": "Seguridad",
-        "disponible": true
+        "stock": 100,
+        "imagen": "https://picsum.photos/200/200?random=18"
     },
     {   "id": 19,
         "nombre": "Router Wi-Fi",
+        "description": "Router Wi-Fi de alta velocidad",
         "precio": 90.00,
         "categoria": "Redes",
-        "disponible": true
+        "stock": 100,
+        "imagen": "https://picsum.photos/200/200?random=19"
     },
     {   "id": 20,
         "nombre": "Extensor de Red",
+        "description": "Extensor de red para mejorar la cobertura Wi-Fi",
         "precio": 70.00,
         "categoria": "Redes",
-        "disponible": true
+        "stock": 100,
+        "imagen": "https://picsum.photos/200/200?random=20"
     }
 ]

@@ -20,6 +20,10 @@ try {
 }
 
 
+const guardarProductos = () => {
+  fs.writeFile('productos.json', JSON.stringify(productos, null, 2),'utf8');
+};
+
 app.use(cors());
 
 app.get('/api/superheroe/:name', async (req, res) => {
@@ -58,6 +62,43 @@ app.get('/api/productos/:id', (req, res) => {
     res.status(404).json({ error: 'Producto no encontrado' });
   }
 });
+
+app.patch('/api/productos/:id/stock', express.json(), (req, res) => {
+  const id = parseInt(req.params.id);
+  const { stock } = req.body;
+  const producto = productos.find(p => p.id === id);
+  
+  if (producto) {
+    if (typeof stock === 'number' && stock >= 0) {
+      producto.stock = stock;
+      guardarProductos();
+      res.json(producto);
+    } else {
+      res.status(400).json({ error: 'Stock debe ser un número no negativo' });
+    }
+  } else {
+    res.status(404).json({ error: 'Producto no encontrado' });
+  }
+});
+
+app.put('/api/productos/:id/stock/reset', express.json(), (req, res) => {
+  const id = parseInt(req.params.id);
+  const { nuevoStock } = req.body;
+
+  const producto = productos.find(p => p.id === id);
+  if (!producto) {
+    return res.status(404).json({ error: 'Producto no encontrado' });
+  }
+
+  if (typeof nuevoStock !== 'number' || nuevoStock < 0) {
+    return res.status(400).json({ error: 'Debe enviar un valor numérico válido' });
+  }
+
+  producto.stock = nuevoStock;
+  guardarProductos();
+  res.json({ mensaje: 'Stock actualizado', producto });
+});
+
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.listen(PORT, () => {
   console.log(`Proxy activo en http://localhost:${PORT}`);
