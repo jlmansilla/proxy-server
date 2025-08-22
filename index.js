@@ -63,6 +63,59 @@ app.get('/api/productos/:id', (req, res) => {
   }
 });
 
+app.post('/api/productos', express.json(), (req, res) => {
+  const { nombre, precio, descripcion, imagen, stock } = req.body;
+  if (!nombre || !precio || !descripcion || !imagen || typeof stock !== 'number' || stock < 0) {
+    return res.status(400).json({ error: 'Faltan campos obligatorios o stock inválido' });
+  }
+  const nuevoProducto = {
+    id: productos.length > 0 ? productos[productos.length - 1].id + 1 : 1,
+    nombre,
+    precio,
+    descripcion: descripcion || '',
+    imagen: imagen || '',
+    stock: stock ?? 0
+  };
+  productos.push(nuevoProducto);
+  guardarProductos();
+  res.status(201).json(nuevoProducto);
+});
+
+api.put('/api/productos/:id', express.json(), (req, res) => {
+  const id = parseInt(req.params.id);
+  const producto = productos.find(p => p.id === id);
+  
+  if (!producto) return res.status(404).json({ error: 'Producto no encontrado' });
+  
+  const { nombre, precio, descripcion, imagen, stock } = req.body;  
+  
+  producto.nombre = nombre ?? producto.nombre;
+  producto.precio = precio ?? producto.precio;
+  producto.descripcion = descripcion ?? producto.descripcion;
+  producto.imagen = imagen ?? producto.imagen;
+
+  if (typeof stock === 'number' && stock >= 0) {
+    producto.stock = stock;
+  }
+
+  guardarProductos();
+  res.json(producto);
+
+});
+
+api.delete('/api/productos/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const index = productos.findIndex(p => p.id === id);
+  
+  if (index !== -1) {
+    productos.splice(index, 1);
+    guardarProductos();
+    res.status(204).send();
+  } else {
+    res.status(404).json({ error: 'Producto no encontrado' });
+  }
+});
+
 app.patch('/api/productos/:id/stock', express.json(), (req, res) => {
   const id = parseInt(req.params.id);
   const { stock } = req.body;

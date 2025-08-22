@@ -36,16 +36,7 @@
     },
     "/api/productos": {
       "get": {
-        "summary": "Listar productos o filtrar por nombre",
-        "parameters": [
-          {
-            "name": "q",
-            "in": "query",
-            "description": "Texto parcial del nombre",
-            "required": false,
-            "schema": { "type": "string" }
-          }
-        ],
+        "summary": "Obtener todos los productos",
         "responses": {
           "200": {
             "description": "Lista de productos",
@@ -59,11 +50,37 @@
             }
           }
         }
+      },
+      "post": {
+        "summary": "Crear un nuevo producto",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NuevoProducto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Producto creado exitosamente",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Producto" }
+              }
+            }
+          },
+          "400": {
+            "description": "Datos inválidos"
+          }
+        }
       }
     },
     "/api/productos/{id}": {
       "get": {
-        "summary": "Obtener producto por ID",
+        "summary": "Obtener un producto por ID",
         "parameters": [
           {
             "name": "id",
@@ -81,6 +98,58 @@
               }
             }
           },
+          "404": { "description": "Producto no encontrado" }
+        }
+      },
+      "put": {
+        "summary": "Actualizar un producto",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/NuevoProducto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Producto actualizado",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Producto" }
+              }
+            }
+          },
+          "404": { "description": "Producto no encontrado" }
+        }
+      },
+      "delete": {
+        "summary": "Eliminar un producto por ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Producto eliminado",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Producto" }
+              }
+            }
+          },
           "404": {
             "description": "Producto no encontrado"
           }
@@ -88,93 +157,93 @@
       }
     },
     "/api/productos/{id}/stock": {
-  "patch": {
-    "summary": "Actualizar el stock de un producto",
-    "description": "Permite sumar o restar stock de un producto existente. El stock nunca bajará de cero.",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "schema": { "type": "integer" },
-        "description": "ID del producto"
-      }
-    ],
-    "requestBody": {
-      "required": true,
-      "content": {
-        "application/json": {
-          "schema": {
-            "type": "object",
-            "properties": {
-              "cantidad": {
-                "type": "integer",
-                "description": "Cantidad a sumar o restar del stock"
-              }
-            },
-            "required": ["cantidad"]
+      "patch": {
+        "summary": "Actualizar el stock de un producto",
+        "description": "Permite sumar o restar stock de un producto existente. El stock nunca bajará de cero.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" },
+            "description": "ID del producto"
           }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cantidad": {
+                    "type": "integer",
+                    "description": "Cantidad a sumar o restar del stock"
+                  }
+                },
+                "required": ["cantidad"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Stock actualizado",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Producto" }
+              }
+            }
+          },
+          "404": { "description": "Producto no encontrado" },
+          "400": { "description": "Parámetros inválidos" }
         }
       }
     },
-    "responses": {
-      "200": {
-        "description": "Stock actualizado",
-        "content": {
-          "application/json": {
-            "schema": { "$ref": "#/components/schemas/Producto" }
+    "/api/productos/{id}/stock/reset": {
+      "put": {
+        "summary": "Reiniciar el stock de un producto",
+        "description": "Establece el stock del producto a un valor específico.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" },
+            "description": "ID del producto"
           }
-        }
-      },
-      "404": { "description": "Producto no encontrado" },
-      "400": { "description": "Parámetros inválidos" }
-    }
-  }
-},
-"/api/productos/{id}/stock/reset": {
-  "put": {
-    "summary": "Reiniciar el stock de un producto",
-    "description": "Establece el stock del producto a un valor específico.",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "schema": { "type": "integer" },
-        "description": "ID del producto"
-      }
-    ],
-    "requestBody": {
-      "required": true,
-      "content": {
-        "application/json": {
-          "schema": {
-            "type": "object",
-            "properties": {
-              "nuevoStock": {
-                "type": "integer",
-                "description": "Valor final que se desea establecer para el stock"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nuevoStock": {
+                    "type": "integer",
+                    "description": "Valor final que se desea establecer para el stock"
+                  }
+                },
+                "required": ["nuevoStock"]
               }
-            },
-            "required": ["nuevoStock"]
+            }
           }
+        },
+        "responses": {
+          "200": {
+            "description": "Stock actualizado correctamente",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Producto" }
+              }
+            }
+          },
+          "404": { "description": "Producto no encontrado" },
+          "400": { "description": "Parámetros inválidos" }
         }
       }
-    },
-    "responses": {
-      "200": {
-        "description": "Stock actualizado correctamente",
-        "content": {
-          "application/json": {
-            "schema": { "$ref": "#/components/schemas/Producto" }
-          }
-        }
-      },
-      "404": { "description": "Producto no encontrado" },
-      "400": { "description": "Parámetros inválidos" }
     }
-  }
-}
   },
   "components": {
     "schemas": {
@@ -184,8 +253,21 @@
           "id": { "type": "integer" },
           "nombre": { "type": "string" },
           "precio": { "type": "number" },
+          "descripcion": { "type": "string" },
+          "imagen": { "type": "string" },
           "stock": { "type": "integer" }
         }
+      },
+      "NuevoProducto": {
+        "type": "object",
+        "properties": {
+          "nombre": { "type": "string" },
+          "precio": { "type": "number" },
+          "descripcion": { "type": "string" },
+          "imagen": { "type": "string" },
+          "stock": { "type": "integer" }
+        },
+        "required": ["nombre", "precio"]
       }
     }
   }
