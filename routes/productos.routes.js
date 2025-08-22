@@ -72,7 +72,7 @@ router.delete('/:id', (req, res) => {
   res.json({ mensaje: 'Producto eliminado', producto: eliminado });
 });
 
-app.patch("/:id/stock", express.json(), (req, res) => {
+router.patch("/:id/stock", express.json(), (req, res) => {
   const id = parseInt(req.params.id);
   const { stock } = req.body;
   const producto = productos.find((p) => p.id === id);
@@ -90,7 +90,7 @@ app.patch("/:id/stock", express.json(), (req, res) => {
   }
 });
 
-app.put("/:id/stock/reset", express.json(), (req, res) => {
+router.put("/:id/stock/reset", express.json(), (req, res) => {
   const id = parseInt(req.params.id);
   const { nuevoStock } = req.body;
 

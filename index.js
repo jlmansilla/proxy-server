@@ -38,9 +38,6 @@ app.get("/api/superhero/:id", async (req, res) => {
 const productosRoutes = require('./routes/productos.routes');
 app.use('/api/productos', productosRoutes);
 
-const productosRoutes = require('./routes/productos.routes');
-app.use('/api/productos', productosRoutes);
-
 app.post("/api/enviar-correo", express.json(), (req, res) => {
   const { nombre, email, asunto, mensaje } = req.body;
 
