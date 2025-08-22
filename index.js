@@ -3,7 +3,6 @@ const swaggerDocument = require("./swagger.json");
 const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
-const fs = require("fs");
 
 const app = express();
 const PORT = 3000;
@@ -35,6 +34,9 @@ app.get("/api/superhero/:id", async (req, res) => {
     res.status(500).json({ error: "Error al consultar SuperHero API" });
   }
 });
+
+const productosRoutes = require('./routes/productos.routes');
+app.use('/api/productos', productosRoutes);
 
 const productosRoutes = require('./routes/productos.routes');
 app.use('/api/productos', productosRoutes);
