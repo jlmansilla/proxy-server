@@ -30,15 +30,20 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', express.json(), (req, res) => {
-  const { nombre, precio, descripcion, imagen, stock } = req.body;
+  const { nombre, precio, descripcion, imagen, stock, etiquetas } = req.body;
   if (!nombre || !precio) return res.status(400).json({ error: 'Nombre y precio son obligatorios' });
+
+  if (etiquetas !== undefined && !Array.isArray(etiquetas)) {
+    return res.status(400).json({ error: 'El campo etiquetas debe ser un arreglo' });
+  }
 
   const nuevo = {
     id: productos.length ? Math.max(...productos.map(p => p.id)) + 1 : 1,
     nombre, precio,
     descripcion: descripcion || '',
     imagen: imagen || '',
-    stock: stock ?? 0
+    stock: stock ?? 0,
+    etiquetas: Array.isArray(etiquetas) ? etiquetas.filter(e => typeof e === 'string') : []
   };
 
   productos.push(nuevo);
@@ -51,12 +56,18 @@ router.put('/:id', express.json(), (req, res) => {
   const producto = productos.find(p => p.id === id);
   if (!producto) return res.status(404).json({ error: 'Producto no encontrado' });
 
-  const { nombre, precio, descripcion, imagen, stock } = req.body;
+  const { nombre, precio, descripcion, imagen, stock, etiquetas } = req.body;
+  if (etiquetas !== undefined && !Array.isArray(etiquetas)) {
+    return res.status(400).json({ error: 'El campo etiquetas debe ser un arreglo' });
+  }
   producto.nombre = nombre ?? producto.nombre;
   producto.precio = precio ?? producto.precio;
   producto.descripcion = descripcion ?? producto.descripcion;
   producto.imagen = imagen ?? producto.imagen;
   producto.stock = stock ?? producto.stock;
+  if (etiquetas !== undefined) {
+    producto.etiquetas = etiquetas.filter(e => typeof e === 'string');
+  }
 
   guardarProductos();
   res.json(producto);

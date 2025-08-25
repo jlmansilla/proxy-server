@@ -255,7 +255,12 @@
           "precio": { "type": "number" },
           "descripcion": { "type": "string" },
           "imagen": { "type": "string" },
-          "stock": { "type": "integer" }
+          "stock": { "type": "integer" },
+          "etiquetas": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Lista de etiquetas del producto"
+          }
         }
       },
       "NuevoProducto": {
@@ -265,7 +270,12 @@
           "precio": { "type": "number" },
           "descripcion": { "type": "string" },
           "imagen": { "type": "string" },
-          "stock": { "type": "integer" }
+          "stock": { "type": "integer" },
+          "etiquetas": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Lista de etiquetas del producto"
+          }
         },
         "required": ["nombre", "precio"]
       }

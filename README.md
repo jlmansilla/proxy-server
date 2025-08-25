@@ -47,6 +47,12 @@ Lista todos los productos de la tienda.
 - GET api/productos/:id
 Consulta un producto por su id.
 
+- POST api/productos
+Crea un producto. Acepta `nombre`, `precio`, `descripcion?`, `imagen?`, `stock?`, `etiquetas?` (array de strings).
+
+- PUT api/productos/:id
+Actualiza un producto. Acepta cualquier campo incluyendo `etiquetas` (array de strings).
+
 ### 📦 Manejo de stock
 - PATCH /api/productos/:id/stock
 Suma o resta stock del producto especificado
@@ -75,13 +81,15 @@ Ejemplo de uso:
     "id": 1,
     "nombre": "Camiseta Superhero",
     "precio": 14990,
-    "stock": 20
+    "stock": 20,
+    "etiquetas": ["ropa", "superheroes"]
   },
   {
     "id": 2,
     "nombre": "Taza Batman",
     "precio": 8990,
-    "stock": 10
+    "stock": 10,
+    "etiquetas": ["taza", "batman"]
   }
 ]
 ```

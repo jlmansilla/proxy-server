@@ -5,8 +5,9 @@
         "nombre": "Robot Aspirador X300",
         "descripcion": "Aspiradora inteligente con mapeo láser y app control. Ideal para pisos de hasta 120m².",
         "precio": 249990,
-        "categoria": "Electrónica",
-        "stock": 5
+        "categoria": "Electrohogar",
+        "stock": 5,
+        "etiquetas": ["limpieza", "tecnología"]
     },
     {
         "id": 2,
@@ -14,8 +15,9 @@
         "nombre": "Airfryer Digital 5L",
         "descripcion": "Freidora de aire con 8 programas preestablecidos y tecnología 360° para cocción uniforme.",
         "precio": 89990,
-        "categoria": "Electrónica",
-        "stock": 7
+        "categoria": "Electrohogar",
+        "stock": 7,
+        "etiquetas": ["cocina", "tecnología"]
     },
     {
         "id": 3,
@@ -23,8 +25,9 @@
         "nombre": "Smartwatch Deportivo Pro",
         "descripcion": "Monitor de ritmo cardíaco, GPS integrado y resistencia al agua 50m. Batería de 7 días.",
         "precio": 129990,
-        "categoria": "Electrónica",
-        "stock": 15
+        "categoria": "Computación",
+        "stock": 15,
+        "etiquetas": ["accesorios", "tecnología"]
     },
     {
         "id": 4,
@@ -32,8 +35,9 @@
         "nombre": "Parlante Bluetooth XSound",
         "descripcion": "Sonido 360° con 20W de potencia. Resistente al agua IPX7 y batería de 15 horas.",
         "precio": 59990,
-        "categoria": "Electrónica",
-        "stock": 10
+        "categoria": "Computación",
+        "stock": 10,
+        "etiquetas": ["tecnología", "sonido"]
     },
     {
         "id": 5,
@@ -41,8 +45,9 @@
         "nombre": "Kit Limpieza para Robot",
         "descripcion": "Incluye 6 paños de microfibra, 2 cepillos y solución limpiadora compatible con marcas principales.",
         "precio": 19990,
-        "categoria": "Electrónica",
-        "stock": 25
+        "categoria": "Electrohogar",
+        "stock": 25,
+        "etiquetas": ["limpieza", "tecnología"]
     },
     {
         "id": 6,
@@ -50,8 +55,9 @@
         "nombre": "Cargador Inalámbrico 3en1",
         "descripcion": "Carga tu smartphone, reloj y audífonos simultáneamente. Potencia 15W.",
         "precio": 34990,
-        "categoria": "Electrónica",
-        "stock": 12
+        "categoria": "Computación",
+        "stock": 12,
+        "etiquetas": ["accesorios", "tecnología"]
     },
     {
         "id": 7,
@@ -59,8 +65,9 @@
         "nombre": "Laptop UltraSlim i7",
         "descripcion": "Pantalla de 14' FHD, 16GB RAM, SSD 512GB, Intel Iris Xe. Solo 1.2kg de peso.",
         "precio": 899990,
-        "categoria": "Electrónica",
-        "stock": 2
+        "categoria": "Computación",
+        "stock": 2,
+        "etiquetas": ["tecnología", "notebook"]
     },
     {
         "id": 8,
@@ -68,8 +75,9 @@
         "nombre": "Robot Cocina 12 en 1",
         "descripcion": "Amasa, cocina al vapor, fríe y más. Pantalla táctil y 50 recetas preprogramadas.",
         "precio": 249990,
-        "categoria": "Electrónica",
-        "stock": 4
+        "categoria": "Electrohogar",
+        "stock": 4,
+        "etiquetas": ["cocina", "robot"]
     },
     {
         "id": 9,
@@ -77,8 +85,9 @@
         "nombre": "Monitor Gamer 32' 4K",
         "descripcion": "144Hz, 1ms, HDR600, AMD FreeSync Premium. Incluye soporte ajustable.",
         "precio": 459990,
-        "categoria": "Electrónica",
-        "stock": 8
+        "categoria": "Computación",
+        "stock": 8,
+        "etiquetas": ["tecnología", "monitor"]
     },
     {
         "id": 10,
@@ -86,8 +95,9 @@
         "nombre": "Cafetera Smart WiFi",
         "descripcion": "Prepara café desde tu app. Molinillo integrado y 6 perfiles de bebidas.",
         "precio": 179990,
-        "categoria": "Electrónica",
-        "stock": 3
+        "categoria": "Electrohogar",
+        "stock": 3,
+        "etiquetas": ["tecnología", "cocina"]
     },
     {
         "id": 11,
@@ -95,8 +105,9 @@
         "nombre": "SSD Externo 2TB USB-C",
         "descripcion": "1050MB/s, resistente a golpes y agua. Ideal para gamers y creadores de contenido.",
         "precio": 89990,
-        "categoria": "Electrónica",
-        "stock": 9
+        "categoria": "Computación",
+        "stock": 9,
+        "etiquetas": ["tecnología", "accesorios"]
     },
     {
         "id": 12,
@@ -104,7 +115,8 @@
         "nombre": "Mouse Gaming Pro RGB",
         "descripcion": "16.000 DPI, 8 botones programables, iluminación RGB personalizable y diseño ergonómico para gaming prolongado.",
         "precio": 49990,
-        "categoria": "Electrónica",
-        "stock": 0
+        "categoria": "Computación",
+        "stock": 0,
+        "etiquetas": ["tecnología", "accesorios"]
     }
 ]
