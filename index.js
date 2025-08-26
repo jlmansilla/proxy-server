@@ -10,12 +10,8 @@ const PORT = 3000;
 const API_TOKEN = "0c599596942953e4fd026124008f7b72";
 const API_BASE_URL = `https://superheroapi.com/api/${API_TOKEN}`;
 
-// CORS + JSON global (incluye soporte explícito para preflight de PATCH)
-app.use(cors({
-  origin: '*',
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-}));
-app.options('*', cors());
+// CORS simplificado para evitar errores de path-to-regexp
+app.use(cors());
 app.use(express.json());
 
 app.get("/api/superheroe/:name", async (req, res) => {
@@ -28,6 +24,7 @@ app.get("/api/superheroe/:name", async (req, res) => {
     res.status(500).json({ error: "Error al consultar SuperHero API" });
   }
 });
+
 app.get("/api/superhero/:id", async (req, res) => {
   const id = req.params.id;
   try {

@@ -30,7 +30,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', express.json(), (req, res) => {
-  const { nombre, precio, descripcion, imagen, stock, etiquetas } = req.body;
+  const { nombre, precio, descripcion, imagen, stock, etiquetas, categoria } = req.body;
   if (!nombre || !precio) return res.status(400).json({ error: 'Nombre y precio son obligatorios' });
 
   if (etiquetas !== undefined && !Array.isArray(etiquetas)) {
@@ -41,8 +41,9 @@ router.post('/', express.json(), (req, res) => {
     id: productos.length ? Math.max(...productos.map(p => p.id)) + 1 : 1,
     nombre, precio,
     descripcion: descripcion || '',
-    imagen: imagen || '',
+    imagen: typeof imagen === 'string' ? imagen : '',
     stock: stock ?? 0,
+    categoria: typeof categoria === 'string' ? categoria : (Array.isArray(req.body?.categorias) && req.body.categorias.length ? String(req.body.categorias[0]) : ''),
     etiquetas: Array.isArray(etiquetas) ? etiquetas.filter(e => typeof e === 'string') : []
   };
 
@@ -56,15 +57,20 @@ router.put('/:id', express.json(), (req, res) => {
   const producto = productos.find(p => p.id === id);
   if (!producto) return res.status(404).json({ error: 'Producto no encontrado' });
 
-  const { nombre, precio, descripcion, imagen, stock, etiquetas } = req.body;
+  const { nombre, precio, descripcion, imagen, stock, etiquetas, categoria } = req.body;
   if (etiquetas !== undefined && !Array.isArray(etiquetas)) {
     return res.status(400).json({ error: 'El campo etiquetas debe ser un arreglo' });
   }
   producto.nombre = nombre ?? producto.nombre;
   producto.precio = precio ?? producto.precio;
   producto.descripcion = descripcion ?? producto.descripcion;
-  producto.imagen = imagen ?? producto.imagen;
+  if (imagen !== undefined && typeof imagen === 'string') {
+    producto.imagen = imagen;
+  }
   producto.stock = stock ?? producto.stock;
+  if (categoria !== undefined && typeof categoria === 'string') {
+    producto.categoria = categoria;
+  }
   if (etiquetas !== undefined) {
     producto.etiquetas = etiquetas.filter(e => typeof e === 'string');
   }
