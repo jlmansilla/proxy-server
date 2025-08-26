@@ -10,7 +10,13 @@ const PORT = 3000;
 const API_TOKEN = "0c599596942953e4fd026124008f7b72";
 const API_BASE_URL = `https://superheroapi.com/api/${API_TOKEN}`;
 
-app.use(cors());
+// CORS + JSON global (incluye soporte explícito para preflight de PATCH)
+app.use(cors({
+  origin: '*',
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+}));
+app.options('*', cors());
+app.use(express.json());
 
 app.get("/api/superheroe/:name", async (req, res) => {
   const name = req.params.name;
@@ -56,6 +62,6 @@ app.post("/api/enviar-correo", express.json(), (req, res) => {
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Proxy activo en http://localhost:${PORT}`);
 });

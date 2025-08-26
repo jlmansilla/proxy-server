@@ -244,6 +244,42 @@
         }
       }
     }
+    ,
+    "/api/productos/checkout": {
+      "post": {
+        "summary": "Finalizar compra (descuenta stock de múltiples ítems)",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "integer" },
+                        "cantidad": { "type": "integer" }
+                      },
+                      "required": ["id", "cantidad"]
+                    }
+                  }
+                },
+                "required": ["items"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Compra finalizada y stock actualizado" },
+          "400": { "description": "Solicitud inválida" },
+          "404": { "description": "Producto no encontrado" },
+          "409": { "description": "Stock insuficiente" }
+        }
+      }
+    }
   },
   "components": {
     "schemas": {

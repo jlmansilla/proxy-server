@@ -85,20 +85,31 @@ router.delete('/:id', (req, res) => {
 
 router.patch("/:id/stock", express.json(), (req, res) => {
   const id = parseInt(req.params.id);
-  const { stock } = req.body;
+  const { cantidad, stock } = req.body || {};
   const producto = productos.find((p) => p.id === id);
 
-  if (producto) {
-    if (typeof stock === "number" && stock >= 0) {
-      producto.stock = stock;
-      guardarProductos();
-      res.json(producto);
-    } else {
-      res.status(400).json({ error: "Stock debe ser un número no negativo" });
-    }
-  } else {
-    res.status(404).json({ error: "Producto no encontrado" });
+  if (!producto) {
+    return res.status(404).json({ error: "Producto no encontrado" });
   }
+
+  // Soporta dos modos:
+  // - cantidad: delta a aplicar (puede ser negativo para rebajar stock)
+  // - stock: valor absoluto a establecer (no negativo)
+  if (typeof cantidad === 'number' && Number.isFinite(cantidad)) {
+    const delta = Math.trunc(cantidad);
+    const next = producto.stock + delta;
+    producto.stock = Math.max(0, next);
+    guardarProductos();
+    return res.json(producto);
+  }
+
+  if (typeof stock === 'number' && stock >= 0) {
+    producto.stock = Math.trunc(stock);
+    guardarProductos();
+    return res.json(producto);
+  }
+
+  return res.status(400).json({ error: "Debe enviar 'cantidad' (delta) o 'stock' válido" });
 });
 
 router.put("/:id/stock/reset", express.json(), (req, res) => {
@@ -119,6 +130,49 @@ router.put("/:id/stock/reset", express.json(), (req, res) => {
   producto.stock = nuevoStock;
   guardarProductos();
   res.json({ mensaje: "Stock actualizado", producto });
+});
+
+// Checkout en bloque: descuenta stock de múltiples ítems de forma atómica
+router.post('/checkout', express.json(), (req, res) => {
+  const items = req.body?.items;
+  if (!Array.isArray(items) || items.length === 0) {
+    return res.status(400).json({ error: 'Debe enviar items a procesar' });
+  }
+
+  // Normaliza y valida entradas
+  const normalized = [];
+  for (const raw of items) {
+    const id = Number(raw?.id);
+    const cantidad = Math.max(0, Math.trunc(Number(raw?.cantidad)));
+    if (!Number.isFinite(id) || id <= 0 || !Number.isFinite(cantidad) || cantidad <= 0) {
+      return res.status(400).json({ error: 'Items inválidos. Se espera id>0 y cantidad>0' });
+    }
+    normalized.push({ id, cantidad });
+  }
+
+  // Verifica existencia y stock suficiente
+  for (const { id, cantidad } of normalized) {
+    const producto = productos.find(p => p.id === id);
+    if (!producto) {
+      return res.status(404).json({ error: `Producto ${id} no encontrado` });
+    }
+    if (producto.stock < cantidad) {
+      return res.status(409).json({ error: `Stock insuficiente para producto ${id}`, disponible: producto.stock, solicitado: cantidad });
+    }
+  }
+
+  // Aplica descuentos (todo o nada)
+  for (const { id, cantidad } of normalized) {
+    const producto = productos.find(p => p.id === id);
+    producto.stock = Math.max(0, producto.stock - cantidad);
+  }
+  guardarProductos();
+
+  const actualizados = normalized.map(({ id }) => {
+    const p = productos.find(x => x.id === id);
+    return { id: p.id, stock: p.stock };
+  });
+  res.json({ mensaje: 'Compra finalizada', actualizados });
 });
 
 module.exports = router;
